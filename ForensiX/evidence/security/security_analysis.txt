@@ -1,0 +1,304 @@
+=== User Analysis ===
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+_apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin
+systemd-timesync:x:997:997:systemd Time Synchronization:/:/usr/sbin/nologin
+messagebus:x:100:107::/nonexistent:/usr/sbin/nologin
+avahi-autoipd:x:101:110:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/usr/sbin/nologin
+usbmux:x:102:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+dnsmasq:x:103:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+avahi:x:104:112:Avahi mDNS daemon,,,:/run/avahi-daemon:/usr/sbin/nologin
+speech-dispatcher:x:105:29:Speech Dispatcher,,,:/run/speech-dispatcher:/bin/false
+pulse:x:106:114:PulseAudio daemon,,,:/run/pulse:/usr/sbin/nologin
+saned:x:107:117::/var/lib/saned:/usr/sbin/nologin
+lightdm:x:108:118:Light Display Manager:/var/lib/lightdm:/bin/false
+polkitd:x:996:996:polkit:/nonexistent:/usr/sbin/nologin
+rtkit:x:109:119:RealtimeKit,,,:/proc:/usr/sbin/nologin
+colord:x:110:120:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+debian:x:1000:1000:4geeks,,,:/home/debian:/bin/bash
+mysql:x:111:121:MySQL Server,,,:/nonexistent:/bin/false
+sshd:x:112:65534::/run/sshd:/usr/sbin/nologin
+ftp:x:113:122:ftp daemon,,,:/srv/ftp:/usr/sbin/nologin
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:
+tty:x:5:
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:debian
+floppy:x:25:debian
+tape:x:26:
+sudo:x:27:
+audio:x:29:pulse,debian
+dip:x:30:debian
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+shadow:x:42:
+utmp:x:43:
+video:x:44:debian
+sasl:x:45:
+plugdev:x:46:debian
+staff:x:50:
+games:x:60:
+users:x:100:debian
+nogroup:x:65534:
+systemd-journal:x:999:
+systemd-network:x:998:
+crontab:x:101:
+input:x:102:
+sgx:x:103:
+kvm:x:104:
+render:x:105:
+netdev:x:106:debian
+systemd-timesync:x:997:
+messagebus:x:107:
+_ssh:x:108:
+ssl-cert:x:109:
+avahi-autoipd:x:110:
+bluetooth:x:111:debian
+avahi:x:112:
+lpadmin:x:113:debian
+pulse:x:114:
+pulse-access:x:115:
+scanner:x:116:saned,debian
+saned:x:117:
+lightdm:x:118:
+polkitd:x:996:
+rtkit:x:119:
+colord:x:120:
+debian:x:1000:
+mysql:x:121:
+ftp:x:122:
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults	env_reset
+Defaults	mail_badpass
+Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# This fixes CVE-2005-4890 and possibly breaks some versions of kdesu
+# (#1011624, https://bugs.kde.org/show_bug.cgi?id=452532)
+Defaults	use_pty
+
+# This preserves proxy settings from user environments of root
+# equivalent users (group sudo)
+#Defaults:%sudo env_keep += "http_proxy https_proxy ftp_proxy all_proxy no_proxy"
+
+# This allows running arbitrary commands, but so does ALL, and it means
+# different sudoers have their choice of editor respected.
+#Defaults:%sudo env_keep += "EDITOR"
+
+# Completely harmless preservation of a user preference.
+#Defaults:%sudo env_keep += "GREP_COLOR"
+
+# While you shouldn't normally run git as root, you need to with etckeeper
+#Defaults:%sudo env_keep += "GIT_AUTHOR_* GIT_COMMITTER_*"
+
+# Per-user preferences; root won't have sensible values for them.
+#Defaults:%sudo env_keep += "EMAIL DEBEMAIL DEBFULLNAME"
+
+# "sudo scp" or "sudo rsync" should be able to use your SSH agent.
+#Defaults:%sudo env_keep += "SSH_AGENT_PID SSH_AUTH_SOCK"
+
+# Ditto for GPG agent
+#Defaults:%sudo env_keep += "GPG_AGENT_INFO"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root	ALL=(ALL:ALL) ALL
+debian  ALL=(ALL:ALL) ALL
+# Allow members of group sudo to execute any command
+%sudo	ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "@include" directives:
+
+@includedir /etc/sudoers.d
+
+=== Security Configuration ===
+
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
+
+# This sshd was compiled with PATH=/usr/local/bin:/usr/bin:/bin:/usr/games
+
+# The strategy used for options in the default sshd_config shipped with
+# OpenSSH is to specify options with their default value where
+# possible, but leave them commented.  Uncommented options override the
+# default value.
+
+Include /etc/ssh/sshd_config.d/*.conf
+
+#Port 22
+#AddressFamily any
+#ListenAddress 0.0.0.0
+#ListenAddress ::
+
+#HostKey /etc/ssh/ssh_host_rsa_key
+#HostKey /etc/ssh/ssh_host_ecdsa_key
+#HostKey /etc/ssh/ssh_host_ed25519_key
+
+# Ciphers and keying
+#RekeyLimit default none
+
+# Logging
+#SyslogFacility AUTH
+#LogLevel INFO
+
+# Authentication:
+
+#LoginGraceTime 2m
+PermitRootLogin yes
+#StrictModes yes
+#MaxAuthTries 6
+#MaxSessions 10
+
+#PubkeyAuthentication yes
+
+# Expect .ssh/authorized_keys2 to be disregarded by default in future.
+#AuthorizedKeysFile	.ssh/authorized_keys .ssh/authorized_keys2
+
+#AuthorizedPrincipalsFile none
+
+#AuthorizedKeysCommand none
+#AuthorizedKeysCommandUser nobody
+
+# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+#HostbasedAuthentication no
+# Change to yes if you don't trust ~/.ssh/known_hosts for
+# HostbasedAuthentication
+#IgnoreUserKnownHosts no
+# Don't read the user's ~/.rhosts and ~/.shosts files
+#IgnoreRhosts yes
+
+# To disable tunneled clear text passwords, change to no here!
+PasswordAuthentication yes
+#PermitEmptyPasswords no
+
+# Change to yes to enable challenge-response passwords (beware issues with
+# some PAM modules and threads)
+KbdInteractiveAuthentication no
+
+# Kerberos options
+#KerberosAuthentication no
+#KerberosOrLocalPasswd yes
+#KerberosTicketCleanup yes
+#KerberosGetAFSToken no
+
+# GSSAPI options
+#GSSAPIAuthentication no
+#GSSAPICleanupCredentials yes
+#GSSAPIStrictAcceptorCheck yes
+#GSSAPIKeyExchange no
+
+# Set this to 'yes' to enable PAM authentication, account processing,
+# and session processing. If this is enabled, PAM authentication will
+# be allowed through the KbdInteractiveAuthentication and
+# PasswordAuthentication.  Depending on your PAM configuration,
+# PAM authentication via KbdInteractiveAuthentication may bypass
+# the setting of "PermitRootLogin prohibit-password".
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and KbdInteractiveAuthentication to 'no'.
+UsePAM yes
+
+#AllowAgentForwarding yes
+#AllowTcpForwarding yes
+#GatewayPorts no
+X11Forwarding yes
+#X11DisplayOffset 10
+#X11UseLocalhost yes
+#PermitTTY yes
+PrintMotd no
+#PrintLastLog yes
+#TCPKeepAlive yes
+#PermitUserEnvironment no
+#Compression delayed
+#ClientAliveInterval 0
+#ClientAliveCountMax 3
+#UseDNS no
+#PidFile /run/sshd.pid
+#MaxStartups 10:30:100
+#PermitTunnel no
+#ChrootDirectory none
+#VersionAddendum none
+
+# no default banner path
+#Banner none
+
+# Allow client to pass locale environment variables
+AcceptEnv LANG LC_*
+
+# override default of no subsystems
+Subsystem	sftp	/usr/lib/openssh/sftp-server
+
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+#	X11Forwarding no
+#	AllowTcpForwarding no
+#	PermitTTY no
+#	ForceCommand cvs server
+iptables command not found in chroot environment.
+
+=== Security Events ===
+Authentication log not found.
+
+=== System Integrity ===
+   163070    396 -rwsr-xr--   1 root     dip        403832 May 14  2022 /home/kali/Forensix/mount/usr/sbin/pppd
+   558743     16 -rwsr-sr-x   1 root     root        14672 Apr 10  2024 /home/kali/Forensix/mount/usr/lib/xorg/Xorg.wrap
+   171841     16 -rwsr-xr-x   1 root     root        14416 Nov 30  2023 /home/kali/Forensix/mount/usr/lib/mysql/plugin/auth_pam_tool_dir/auth_pam_tool
+   275092    640 -rwsr-xr-x   1 root     root       653888 Jun 22  2024 /home/kali/Forensix/mount/usr/lib/openssh/ssh-keysign
+   294944     20 -rwsr-xr-x   1 root     root        18664 Jan 31  2023 /home/kali/Forensix/mount/usr/lib/polkit-1/polkit-agent-helper-1
+   265099     52 -rwsr-xr--   1 root     messagebus    51272 Sep 16  2023 /home/kali/Forensix/mount/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+   135110     72 -rwsr-xr-x   1 root     root          72000 Mar 28  2024 /home/kali/Forensix/mount/usr/bin/su
+   134600     36 -rwsr-xr-x   1 root     root          35128 Mar 28  2024 /home/kali/Forensix/mount/usr/bin/umount
+   131186     52 -rwsr-xr-x   1 root     root          52880 Mar 23  2023 /home/kali/Forensix/mount/usr/bin/chsh
+   131189     68 -rwsr-xr-x   1 root     root          68248 Mar 23  2023 /home/kali/Forensix/mount/usr/bin/passwd
+   149768     36 -rwsr-xr-x   1 root     root          35128 Apr 18  2023 /home/kali/Forensix/mount/usr/bin/fusermount3
+   131185     64 -rwsr-xr-x   1 root     root          62672 Mar 23  2023 /home/kali/Forensix/mount/usr/bin/chfn
+   134444     48 -rwsr-xr-x   1 root     root          48896 Mar 23  2023 /home/kali/Forensix/mount/usr/bin/newgrp
+   149780    160 -rwsr-xr-x   1 root     root         162752 Mar 23  2023 /home/kali/Forensix/mount/usr/bin/ntfs-3g
+   155611     28 -rwsr-xr-x   1 root     root          26776 Jan 31  2023 /home/kali/Forensix/mount/usr/bin/pkexec
+   131188     88 -rwsr-xr-x   1 root     root          88496 Mar 23  2023 /home/kali/Forensix/mount/usr/bin/gpasswd
+   134598     60 -rwsr-xr-x   1 root     root          59704 Mar 28  2024 /home/kali/Forensix/mount/usr/bin/mount
+   151611    276 -rwsr-xr-x   1 root     root         281624 Jun 27  2023 /home/kali/Forensix/mount/usr/bin/sudo

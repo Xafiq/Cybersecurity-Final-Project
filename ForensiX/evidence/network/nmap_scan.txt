@@ -1,0 +1,8 @@
+# Nmap 7.94SVN scan initiated Mon Feb  3 19:35:13 2025 as: /usr/lib/nmap/nmap -sV -p- -oN /home/kali/Forensix/evidence/network/nmap_scan.txt 192.168.0.16
+Nmap scan report for 192.168.0.16
+Host is up (0.0000080s latency).
+All 65535 scanned ports on 192.168.0.16 are in ignored states.
+Not shown: 65535 closed tcp ports (reset)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Feb  3 19:35:28 2025 -- 1 IP address (1 host up) scanned in 14.82 seconds

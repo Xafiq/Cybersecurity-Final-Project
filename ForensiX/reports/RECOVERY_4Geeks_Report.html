@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>4Geeks - RECOVERY Report</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+<style>
+:root {
+    --primary: #1a237e;
+    --secondary: #0d47a1;
+    --danger: #dc3545;
+    --warning: #ffc107;
+    --success: #28a745;
+    --info: #17a2b8;
+    --critical: #ff0000;
+    --high: #ff8000;
+    --medium: #ffbf00;
+    --low: #00ff00;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    background: #f8f9fa;
+}
+.header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
+.card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+pre { background: #f8f9fa; padding: 1rem; border-radius: 4px; overflow-x: auto; }
+.findings-table { width: 100%; border-collapse: collapse; }
+.findings-table th, .findings-table td { padding: 0.75rem; border-bottom: 1px solid #dee2e6; }
+.chart-container { display: flex; justify-content: center; margin: 2rem 0; }
+.chart-container canvas { max-width: 100%; }
+.summary { display: flex; flex-wrap: wrap; justify-content: space-around; margin-bottom: 2rem; }
+.summary div { text-align: center; flex: 1 1 200px; margin: 0.5rem; }
+.summary div h3 { margin: 0; }
+.details { display: flex; flex-wrap: wrap; gap: 1rem; }
+.details .card { flex: 1 1 calc(50% - 1rem); }
+.risk-critical { background-color: var(--critical); color: white; }
+.risk-high { background-color: var(--high); color: white; }
+.risk-medium { background-color: var(--medium); color: black; }
+.risk-low { background-color: var(--low); color: black; }
+</style>
+</head>
+<body>
+<div class="header">
+<div class="container">
+<h1>4Geeks - RECOVERY Report</h1>
+<p>Case: 4Geeks | Date: Mon Feb  3 07:32:38 PM UTC 2025</p>
+<p>Chain of Custody:</p>
+<p>Before:</p>
+<pre></pre>
+<pre></pre>
+<p>After:</p>
+<pre></pre>
+<pre></pre>
+<button onclick="downloadPDF()">Download PDF</button>
+</div>
+</div>
+<div class="container">
+<div class="card">
+<h2>Detailed Findings</h2>
+<table class="findings-table">
+<thead>
+<tr>
+<th>Vulnerability</th>
+<th>Severity</th>
+<th>Description</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="risk-medium">
+<td>Weak password rotation policy</td>
+<td>Medium</td>
+<td>Weak password rotation policy</td>
+<td>Set PASS_MAX_DAYS ≤ 90</td>
+</tr>
+<tr class="risk-high">
+<td>Essential service auditd not running</td>
+<td>High</td>
+<td>Essential service auditd not running</td>
+<td>Start and enable auditd</td>
+</tr>
+<tr class="risk-high">
+<td>Essential service firewalld not running</td>
+<td>High</td>
+<td>Essential service firewalld not running</td>
+<td>Start and enable firewalld</td>
+</tr>
+<tr class="risk-high">
+<td>Essential service sshd not running</td>
+<td>High</td>
+<td>Essential service sshd not running</td>
+<td>Start and enable sshd</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/chfn)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/chfn)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/chsh)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/chsh)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/fusermount3)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/fusermount3)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/gpasswd)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/gpasswd)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/mount)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/mount)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/newgrp)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/newgrp)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/ntfs-3g)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/ntfs-3g)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/passwd)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/passwd)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/pkexec)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/pkexec)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/sudo)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/sudo)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/su)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/su)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/umount)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/bin/umount)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/lib/dbus-1.0/dbus-daemon-launch-helper)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/lib/dbus-1.0/dbus-daemon-launch-helper)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/lib/mysql/plugin/auth_pam_tool_dir/auth_pam_tool)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/lib/mysql/plugin/auth_pam_tool_dir/auth_pam_tool)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/lib/openssh/ssh-keysign)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/lib/openssh/ssh-keysign)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/lib/polkit-1/polkit-agent-helper-1)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/lib/polkit-1/polkit-agent-helper-1)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/lib/xorg/Xorg.wrap)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/lib/xorg/Xorg.wrap)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-high">
+<td>SUID file found (/home/kali/Forensix/mount/usr/sbin/pppd)</td>
+<td>High</td>
+<td>SUID file found (/home/kali/Forensix/mount/usr/sbin/pppd)</td>
+<td>Review SUID permissions</td>
+</tr>
+<tr class="risk-critical">
+<td>Insecure permissions on /etc/shadow (640)</td>
+<td>Critical</td>
+<td>Insecure permissions on /etc/shadow (640)</td>
+<td>Set permissions to 600</td>
+</tr>
+<tr class="risk-critical">
+<td>Insecure permissions on /etc/ssh/sshd_config (644)</td>
+<td>Critical</td>
+<td>Insecure permissions on /etc/ssh/sshd_config (644)</td>
+<td>Set permissions to 600</td>
+</tr>
+<tr class="risk-critical">
+<td>Root SSH login enabled</td>
+<td>Critical</td>
+<td>Root SSH login enabled</td>
+<td>Disable root SSH login</td>
+</tr>
+<tr class="risk-critical">
+<td>System severely outdated (117 days)</td>
+<td>Critical</td>
+<td>System severely outdated (117 days)</td>
+<td>Update immediately</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="card">
+<h2>Recommendations</h2>
+<ul>
+<li>Implement prepared statements and parameterized queries to prevent SQL injection.</li>
+<li>Sanitize and validate all user inputs to prevent XSS attacks.</li>
+<li>Implement proper access controls and authorization checks to prevent IDOR.</li>
+<li>Disable detailed error messages in production environments to prevent information disclosure.</li>
+<li>Regularly update and patch systems to mitigate known vulnerabilities.</li>
+<li>Conduct regular security audits and penetration tests to identify and address vulnerabilities.</li>
+</ul>
+</div>
+<div class="card">
+<h2>Technical Details</h2>
+<pre>=== System Information ===
+Hardware Configuration:
+Architecture:                         x86_64
+CPU op-mode(s):                       32-bit, 64-bit
+Address sizes:                        48 bits physical, 48 bits virtual
+Byte Order:                           Little Endian
+CPU(s):                               2
+On-line CPU(s) list:                  0,1
+Vendor ID:                            AuthenticAMD
+Model name:                           AMD Ryzen 7 PRO 5850U with Radeon Graphics
+BIOS Model name:                        CPU @ 0.0GHz
+BIOS CPU family:                      0
+CPU family:                           25
+Model:                                80
+Thread(s) per core:                   1
+Core(s) per socket:                   2
+Socket(s):                            1
+Stepping:                             0
+BogoMIPS:                             3792.87
+Flags:                                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt rdtscp lm constant_tsc rep_good nopl nonstop_tsc cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx rdrand hypervisor lahf_lm cmp_legacy cr8_legacy abm sse4a misalignsse 3dnowprefetch vmmcall fsgsbase bmi1 avx2 bmi2 invpcid rdseed clflushopt arat
+Hypervisor vendor:                    KVM
+Virtualization type:                  full
+L1d cache:                            64 KiB (2 instances)
+L1i cache:                            64 KiB (2 instances)
+L2 cache:                             1 MiB (2 instances)
+L3 cache:                             32 MiB (2 instances)
+NUMA node(s):                         1
+NUMA node0 CPU(s):                    0,1
+Vulnerability Gather data sampling:   Not affected
+Vulnerability Itlb multihit:          Not affected
+Vulnerability L1tf:                   Not affected
+Vulnerability Mds:                    Not affected
+Vulnerability Meltdown:               Not affected
+Vulnerability Mmio stale data:        Not affected
+Vulnerability Reg file data sampling: Not affected
+Vulnerability Retbleed:               Not affected
+Vulnerability Spec rstack overflow:   Vulnerable: Safe RET, no microcode
+Vulnerability Spec store bypass:      Not affected
+Vulnerability Spectre v1:             Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:             Mitigation; Retpolines; STIBP disabled; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected
+Vulnerability Srbds:                  Not affected
+Vulnerability Tsx async abort:        Not affected
+# dmidecode 3.6
+Getting SMBIOS data from sysfs.
+SMBIOS 2.5 present.
+
+Handle 0x0001, DMI type 1, 27 bytes
+System Information
+	Manufacturer: innotek GmbH
+	Product Name: VirtualBox
+	Version: 1.2
+	Serial Number: 0
+	UUID: 52a0a90b-4893-1644-9246-9e4268228243
+	Wake-up Type: Power Switch
+	SKU Number: Not Specified
+	Family: Virtual Machine
+
+
+=== Memory Information ===
+               total        used        free      shared  buff/cache   available
+Mem:           3.8Gi       966Mi       2.6Gi       129Mi       543Mi       2.8Gi
+Swap:             0B          0B          0B
+procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st gu
+ 0  0      0 2765608    164 556620    0    0 154488     0 1270    4 17  8 75  0  0  0
+ 0  0      0 2766448    708 556744    0    0   544     0  615  577  1  2 98  0  0  0
+ 0  0      0 2766172    708 556744    0    0     0     0  467  383  2  1 98  0  0  0
+ 0  0      0 2765912    708 556744    0    0     0     0  469  385  1  1 98  0  0  0
+ 0  0      0 2765452    708 556744    0    0     0     0  422  366  1  1 98  0  0  0
+MemTotal:        3950944 kB
+MemFree:         2765452 kB
+MemAvailable:    2961740 kB
+Buffers:             708 kB
+Cached:           504756 kB
+SwapCached:            0 kB
+Active:           723816 kB
+Inactive:         295860 kB
+Active(anon):     432596 kB
+Inactive(anon):   214432 kB
+Active(file):     291220 kB
+Inactive(file):    81428 kB
+Unevictable:          96 kB
+Mlocked:              96 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Zswap:                 0 kB
+Zswapped:              0 kB
+Dirty:                 0 kB
+Writeback:             0 kB
+AnonPages:        514308 kB
+Mapped:           110208 kB
+Shmem:            132816 kB
+KReclaimable:      51988 kB
+Slab:             102664 kB
+SReclaimable:      51988 kB
+SUnreclaim:        50676 kB
+KernelStack:        7252 kB
+PageTables:        15300 kB
+SecPageTables:         0 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     1975472 kB
+Committed_AS:    3396000 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:       27684 kB
+VmallocChunk:          0 kB
+Percpu:             1008 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:    227328 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+Unaccepted:            0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:       96328 kB
+DirectMap2M:     4032512 kB
+
+=== Storage Information ===
+Filesystem      Size  Used Avail Use% Mounted on
+udev            1.9G     0  1.9G   0% /dev
+tmpfs           386M  1.2M  385M   1% /run
+/dev/sdb1       4.7G  4.7G     0 100% /run/live/medium
+/dev/loop0      4.0G  4.0G     0 100% /run/live/rootfs/filesystem.squashfs
+tmpfs           1.9G  124M  1.8G   7% /run/live/overlay
+overlay         1.9G  124M  1.8G   7% /
+tmpfs           1.9G  4.0K  1.9G   1% /dev/shm
+efivarfs        256K   30K  222K  12% /sys/firmware/efi/efivars
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs           1.0M     0  1.0M   0% /run/credentials/systemd-journald.service
+tmpfs           1.0M     0  1.0M   0% /run/credentials/systemd-udev-load-credentials.service
+tmpfs           1.0M     0  1.0M   0% /run/credentials/systemd-tmpfiles-setup-dev-early.service
+tmpfs           1.0M     0  1.0M   0% /run/credentials/systemd-sysctl.service
+tmpfs           1.0M     0  1.0M   0% /run/credentials/systemd-sysusers.service
+tmpfs           1.0M     0  1.0M   0% /run/credentials/systemd-tmpfiles-setup-dev.service
+tmpfs           1.9G   28K  1.9G   1% /tmp
+tmpfs           1.0M     0  1.0M   0% /run/credentials/systemd-tmpfiles-setup.service
+Scripts         467G  296G  171G  64% /media/sf_Scripts
+tmpfs           386M  144K  386M   1% /run/user/1000
+tmpfs           1.0M     0  1.0M   0% /run/credentials/getty@tty1.service
+/dev/sda1        29G  5.9G   22G  22% /home/kali/Forensix/mount
+NAME    SIZE TYPE MOUNTPOINT                                     FSTYPE
+loop0     4G loop /usr/lib/live/mount/rootfs/filesystem.squashfs squashfs
+sda    30.3G disk                                                
+├─sda1 29.3G part /home/kali/Forensix/mount                      ext4
+├─sda2    1K part                                                
+└─sda5  975M part                                                swap
+sdb    14.3G disk                                                iso9660
+├─sdb1  4.7G part /usr/lib/live/mount/medium                     iso9660
+└─sdb2    4M part                                                vfat
+sr0    1024M rom                                                 
+Disk /dev/sda: 30.29 GiB, 32519028736 bytes, 63513728 sectors
+Disk model: VBOX HARDDISK   
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x06be66c8
+
+Device     Boot    Start      End  Sectors  Size Id Type
+/dev/sda1  *        2048 61513727 61511680 29.3G 83 Linux
+/dev/sda2       61515774 63512575  1996802  975M  5 Extended
+/dev/sda5       61515776 63512575  1996800  975M 82 Linux swap / Solaris
+
+
+Disk /dev/sdb: 14.32 GiB, 15376000000 bytes, 30031250 sectors
+Disk model: Ultra           
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xa8d8652c
+
+Device     Boot   Start     End Sectors  Size Id Type
+/dev/sdb1  *         64 9837827 9837764  4.7G 17 Hidden HPFS/NTFS
+/dev/sdb2       9837828 9846019    8192    4M  1 FAT12
+
+
+Disk /dev/loop0: 3.98 GiB, 4269445120 bytes, 8338760 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+=== Operating System ===
+PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+Linux kali 6.11.2-amd64 #1 SMP PREEMPT_DYNAMIC Kali 6.11.2-1kali1 (2024-10-15) x86_64 GNU/Linux
+
+=== Running Processes ===
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           2  0.0  0.0      0     0 ?        S    12:14   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [pool_workqueue_release]
+root           4  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-rcu_gp]
+root           5  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-sync_wq]
+root           6  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-slub_flushwq]
+root           7  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-netns]
+root          10  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/0:0H-events_highpri]
+root          12  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-mm_percpu_wq]
+root          13  0.0  0.0      0     0 ?        I    12:14   0:00  \_ [rcu_tasks_kthread]
+root          14  0.0  0.0      0     0 ?        I    12:14   0:00  \_ [rcu_tasks_rude_kthread]
+root          15  0.0  0.0      0     0 ?        I    12:14   0:00  \_ [rcu_tasks_trace_kthread]
+root          16  0.0  0.0      0     0 ?        S    12:14   0:03  \_ [ksoftirqd/0]
+root          17  0.0  0.0      0     0 ?        I    12:14   0:03  \_ [rcu_preempt]
+root          18  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [rcu_exp_par_gp_kthread_worker/0]
+root          19  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [rcu_exp_gp_kthread_worker]
+root          20  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [migration/0]
+root          21  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [idle_inject/0]
+root          22  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [cpuhp/0]
+root          23  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [cpuhp/1]
+root          24  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [idle_inject/1]
+root          25  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [migration/1]
+root          26  0.0  0.0      0     0 ?        S    12:14   0:02  \_ [ksoftirqd/1]
+root          31  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [kdevtmpfs]
+root          32  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-inet_frag_wq]
+root          33  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [kauditd]
+root          34  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [khungtaskd]
+root          35  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [oom_reaper]
+root          37  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-writeback]
+root          38  0.0  0.0      0     0 ?        S    12:14   0:05  \_ [kcompactd0]
+root          39  0.0  0.0      0     0 ?        SN   12:14   0:00  \_ [ksmd]
+root          40  0.0  0.0      0     0 ?        SN   12:14   0:00  \_ [khugepaged]
+root          41  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-kintegrityd]
+root          42  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-kblockd]
+root          43  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-blkcg_punt_bio]
+root          44  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [irq/9-acpi]
+root          46  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-tpm_dev_wq]
+root          47  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-edac-poller]
+root          48  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-devfreq_wq]
+root          49  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/0:1H-kblockd]
+root          50  2.5  0.0      0     0 ?        S    12:14   3:37  \_ [kswapd0]
+root          58  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-kthrotld]
+root          62  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-acpi_thermal_pm]
+root          63  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-mld]
+root          64  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-ipv6_addrconf]
+root          69  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-kstrp]
+root          73  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/u9:0-ttm]
+root          78  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-cryptd]
+root         252  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-ata_sff]
+root         253  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [scsi_eh_0]
+root         255  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-scsi_tmf_0]
+root         257  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [scsi_eh_1]
+root         258  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-scsi_tmf_1]
+root         259  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [irq/18-vmwgfx]
+root         260  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-ttm]
+root         261  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [scsi_eh_2]
+root         262  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-scsi_tmf_2]
+root         268  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/1:2H-kblockd]
+root         270  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [scsi_eh_3]
+root         271  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-scsi_tmf_3]
+root         272  0.0  0.0      0     0 ?        S    12:14   0:05  \_ [usb-storage]
+root         273  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-uas]
+root         627  0.0  0.0      0     0 ?        S    12:14   0:00  \_ [psimon]
+root         790  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-rpciod]
+root         792  0.0  0.0      0     0 ?        I<   12:14   0:00  \_ [kworker/R-xprtiod]
+root        1779  0.0  0.0      0     0 ?        I<   12:15   0:00  \_ [kworker/u9:1-ttm]
+root       31967  0.0  0.0      0     0 ?        I    12:59   0:00  \_ [kworker/0:0-events]
+root       36944  0.0  0.0      0     0 ?        S    13:02   0:00  \_ [psimon]
+root       53683  0.0  0.0      0     0 ?        I    13:23   0:00  \_ [kworker/u8:0-events_unbound]
+root       76947  0.0  0.0      0     0 ?        I<   14:08   0:00  \_ [kworker/1:0H-kblockd]
+root       83126  0.0  0.0      0     0 ?        I    14:17   0:00  \_ [kworker/1:1-ata_sff]
+root       84136  0.0  0.0      0     0 ?        I    14:19   0:00  \_ [kworker/u8:3-events_unbound]
+root       84137  0.0  0.0      0     0 ?        I    14:19   0:00  \_ [kworker/u8:4-loop0]
+root       84153  0.0  0.0      0     0 ?        I    14:19   0:00  \_ [kworker/0:2-ata_sff]
+root       91047  0.0  0.0      0     0 ?        I    14:29   0:00  \_ [kworker/1:0-ata_sff]
+root       93741  0.0  0.0      0     0 ?        I    14:34   0:00  \_ [kworker/1:2-ata_sff]
+root       93848  0.0  0.0      0     0 ?        S    14:35   0:00  \_ [jbd2/sda1-8]
+root       93849  0.0  0.0      0     0 ?        I<   14:35   0:00  \_ [kworker/R-ext4-rsv-conversion]
+root       93902  0.0  0.0      0     0 ?        I    14:35   0:00  \_ [kworker/0:1-events]
+root       93903  0.0  0.0      0     0 ?        I<   14:35   0:00  \_ [kworker/1:1H]
+root           1  0.0  0.3  23108 12788 ?        Ss   12:14   0:03 /sbin/init components splash noeject noswap noautomount
+root         576  0.0  0.2  50136  9468 ?        Ss   12:14   0:00 /usr/lib/systemd/systemd-journald
+root         625  0.1  0.1  30244  7656 ?        Ss   12:14   0:09 /usr/lib/systemd/systemd-udevd
+root         768  0.0  0.1   8368  6556 ?        Ss   12:14   0:00 /usr/sbin/haveged --Foreground --verbose=1
+root        1457  0.0  0.1 308608  7028 ?        Ssl  12:15   0:00 /usr/libexec/accounts-daemon
+root        1458  0.0  0.0   6708  2644 ?        Ss   12:15   0:00 /usr/sbin/cron -f
+lightdm     1459  0.0  0.1   8744  5668 ?        Ss   12:15   0:03 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+988         1461  0.0  0.2 385380 10264 ?        Ssl  12:15   0:00 /usr/lib/polkit-1/polkitd --no-debug --log-level=err
+root        1462  0.0  0.1  18012  7668 ?        Ss   12:15   0:00 /usr/lib/systemd/systemd-logind
+root        1470  0.0  0.2 333560 11732 ?        Ssl  12:15   0:00 /usr/sbin/NetworkManager --no-daemon
+root        1498  0.0  0.2 316244  7956 ?        Ssl  12:15   0:00 /usr/sbin/ModemManager
+root        1516  0.0  0.0 287916  2840 ?        Sl   12:15   0:01 /usr/sbin/VBoxService
+root        1542  0.0  0.1 380948  6960 ?        SLsl 12:15   0:00 /usr/sbin/lightdm
+root        1558  0.9  2.3 407432 92088 ?        Ssl+ 12:15   1:17  \_ /usr/lib/xorg/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+root        1567  0.0  0.2 237024  8352 ?        Sl   12:15   0:00  \_ lightdm --session-child 13 16
+debian      1601  0.0  1.3 574276 51560 ?        Ssl  12:15   0:01      \_ xfce4-session
+debian      1825  0.2  0.9 391092 36680 ?        Sl   12:15   0:21          \_ xfwm4
+debian      1847  0.0  0.5 301760 21624 ?        Sl   12:15   0:01          \_ xfsettingsd
+debian      1851  0.0  0.8 539820 34688 ?        Sl   12:15   0:04          \_ xfce4-panel
+debian      1871  0.0  0.9 465440 35804 ?        Sl   12:15   0:01          |   \_ /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/panel/plugins/libwhiskermenu.so 1 25165831 whiskermenu Whisker Menu Show a menu to easily access installed applications
+debian      2023  0.4  1.1 361160 44440 ?        Sl   12:15   0:34          |   \_ /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/panel/plugins/libcpugraph.so 13 25165836 cpugraph CPU Graph Graphical representation of the CPU load
+debian      2024  0.0  0.4 409844 19556 ?        Sl   12:15   0:00          |   \_ /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/panel/plugins/libsystray.so 14 25165837 systray Status Tray Plugin Provides status notifier items (application indicators) and legacy systray items
+debian      2025  0.1  0.5 338116 22000 ?        Sl   12:15   0:16          |   \_ /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/panel/plugins/libgenmon.so 15 25165838 genmon Generic Monitor Show output of a command.
+debian      2026  0.0  0.8 461876 32840 ?        Sl   12:15   0:00          |   \_ /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/panel/plugins/libpulseaudio-plugin.so 16 25165839 pulseaudio PulseAudio Plugin Adjust the audio volume of the PulseAudio sound system
+debian      2027  0.0  0.7 461264 31252 ?        Sl   12:15   0:00          |   \_ /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/panel/plugins/libnotification-plugin.so 17 25165840 notification-plugin Notification Plugin Notification plugin for the Xfce panel
+debian      2028  0.0  0.7 388576 31508 ?        Sl   12:15   0:03          |   \_ /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/panel/plugins/libxfce4powermanager.so 18 25165841 power-manager-plugin Power Manager Plugin Display the battery levels of your devices and control the brightness of your display
+debian      2036  0.0  0.7 387952 30280 ?        Sl   12:15   0:00          |   \_ /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/panel/plugins/libactions.so 22 25165842 actions Action Buttons Log out, lock or other system actions
+debian      1856  0.0  1.2 470820 48912 ?        Sl   12:15   0:00          \_ Thunar --daemon
+debian      1867  0.0  1.3 554360 51536 ?        Sl   12:15   0:04          \_ xfdesktop
+debian      1875  0.0  1.2 534692 49948 ?        Sl   12:15   0:01          \_ /usr/bin/python3 /usr/bin/blueman-applet
+debian      1876  0.0  0.1 381868  6256 ?        Sl   12:15   0:00          \_ /usr/libexec/geoclue-2.0/demos/agent
+debian      1889  0.0  0.6 411524 25096 ?        Sl   12:15   0:00          \_ light-locker
+debian      1897  0.0  0.9 626340 36656 ?        Sl   12:15   0:00          \_ nm-applet
+debian      1909  0.0  0.3 256188 12872 ?        Sl   12:15   0:00          \_ /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+debian      1914  0.0  0.8  68692 34700 ?        S    12:15   0:01          \_ /usr/bin/python3 /usr/share/system-config-printer/applet.py
+debian      1961  0.0  0.4 262364 19244 ?        Sl   12:15   0:00          \_ xfce4-power-manager
+debian      1967  0.0  0.1 381840  7720 ?        Sl   12:15   0:00          \_ xiccd
+root        1557  0.0  0.1   8820  4952 ?        Ss   12:15   0:00 login -- kali
+debian      1619  0.0  0.1  10208  5680 ?        Ss+  12:15   0:01  \_ -zsh
+debian      1577  0.0  0.2  21448  9944 ?        Ss   12:15   0:00 /usr/lib/systemd/systemd --user
+debian      1579  0.0  0.0  22644  3444 ?        S    12:15   0:00  \_ (sd-pam)
+debian      1597  0.0  0.2 109504 10816 ?        S<sl 12:15   0:00  \_ /usr/bin/pipewire
+debian      1598  0.0  0.1  84280  4200 ?        Ssl  12:15   0:00  \_ /usr/bin/pipewire -c filter-chain.conf
+debian      1599  0.0  0.5 643256 21684 ?        S<sl 12:15   0:00  \_ /usr/bin/wireplumber
+debian      1602  0.0  0.1  98684  7656 ?        S<sl 12:15   0:00  \_ /usr/bin/pipewire-pulse
+debian      1622  0.0  0.1   7848  4680 ?        Ss   12:15   0:00  \_ /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+debian      1783  0.0  0.1 380908  7300 ?        Ssl  12:15   0:00  \_ /usr/libexec/at-spi-bus-launcher
+debian      1790  0.0  0.1   7392  3972 ?        S    12:15   0:00  |   \_ /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 11 --address=unix:path=/run/user/1000/at-spi/bus_0
+debian      1803  0.0  0.1 234048  7052 ?        Sl   12:15   0:00  \_ /usr/libexec/at-spi2-registryd --use-gnome-session
+debian      1823  0.0  0.0  81640  3248 ?        SLs  12:15   0:00  \_ /usr/bin/gpg-agent --supervised
+debian      1829  0.0  0.1 312444  7008 ?        Ssl  12:15   0:00  \_ /usr/libexec/gvfsd
+debian      2134  0.0  0.1 533916  7812 ?        Sl   12:15   0:00  |   \_ /usr/libexec/gvfsd-trash --spawner :1.21 /org/gtk/gvfs/exec_spaw/0
+debian      1835  0.0  0.1 457532  6520 ?        Sl   12:15   0:00  \_ /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f
+debian      1898  0.0  0.1 230560  5908 ?        Ssl  12:15   0:00  \_ /usr/libexec/dconf-service
+debian      1966  0.0  1.0 463884 41616 ?        Ssl  12:15   0:01  \_ /usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd
+debian      2082  0.0  0.2 573576 11784 ?        Ssl  12:15   0:00  \_ /usr/libexec/gvfs-udisks2-volume-monitor
+debian      2097  0.0  0.1 307660  6412 ?        Ssl  12:15   0:00  \_ /usr/libexec/gvfs-mtp-volume-monitor
+debian      2103  0.0  0.1 308616  6300 ?        Ssl  12:15   0:00  \_ /usr/libexec/gvfs-gphoto2-volume-monitor
+debian      2108  0.0  0.1 307576  5956 ?        Ssl  12:15   0:00  \_ /usr/libexec/gvfs-goa-volume-monitor
+debian      2119  0.0  0.1 389008  7668 ?        Ssl  12:15   0:00  \_ /usr/libexec/gvfs-afc-volume-monitor
+debian      2142  0.0  0.1 234152  6192 ?        Ssl  12:15   0:00  \_ /usr/libexec/gvfsd-metadata
+debian      2165  0.0  0.1  46384  5164 ?        Ss   12:15   0:00  \_ /usr/libexec/bluetooth/obexd
+133         1629  0.0  0.0  20332  2764 ?        SNsl 12:15   0:00 /usr/libexec/rtkit-daemon
+debian      1700  0.0  0.0  14628  1368 ?        S    12:15   0:00 /usr/bin/VBoxClient --clipboard
+debian      1701  0.0  0.1 212816  4504 ?        Sl   12:15   0:00  \_ /usr/bin/VBoxClient --clipboard
+debian      1717  0.0  0.0  14628  1600 ?        S    12:15   0:00 /usr/bin/VBoxClient --seamless
+debian      1718  0.0  0.0 212916  2900 ?        Sl   12:15   0:04  \_ /usr/bin/VBoxClient --seamless
+debian      1726  0.0  0.0  14628  1340 ?        S    12:15   0:00 /usr/bin/VBoxClient --draganddrop
+debian      1727  0.1  0.0 213432  2812 ?        Sl   12:15   0:13  \_ /usr/bin/VBoxClient --draganddrop
+debian      1774  0.0  0.0  14628  1564 ?        S    12:15   0:00 /usr/bin/VBoxClient --vmsvga
+debian      1775  0.0  0.0 213020  3012 ?        Sl   12:15   0:01  \_ /usr/bin/VBoxClient --vmsvga
+debian      1814  0.0  0.0   9916  1352 ?        Ss   12:15   0:00 /usr/bin/ssh-agent -s
+134         1978  0.0  0.3 315552 12552 ?        Ssl  12:15   0:00 /usr/libexec/colord
+root        1995  0.0  0.2 317728  9380 ?        Ssl  12:15   0:01 /usr/libexec/upowerd
+root        2086  0.0  0.2 469752 10952 ?        Ssl  12:15   0:00 /usr/libexec/udisks2/udisksd
+debian      2185  0.2  1.5 459748 61188 ?        Sl   12:15   0:24 /usr/bin/qterminal
+debian      2196  0.0  0.1  10340  6440 ?        Ss   12:15   0:01  \_ /usr/bin/zsh
+root       92489  0.0  0.1  20176  7692 ?        S+   14:32   0:00      \_ sudo ./fx.sh
+root       92490  0.0  0.0  20176  2468 ?        Ss   14:32   0:00          \_ sudo ./fx.sh
+root       92491  0.0  0.0   7536  3652 ?        S+   14:32   0:00              \_ /bin/bash ./fx.sh
+root       93907 60.0  0.1  12572  5296 ?        R+   14:35   0:00                  \_ ps auxf
+debian      3805  0.0  1.5 459316 63164 ?        Sl   12:18   0:02 /usr/bin/qterminal
+debian      3808  0.0  0.1  13736  6720 ?        Ss   12:18   0:00  \_ /usr/bin/zsh
+root        7411  0.0  0.1  20176  7652 ?        S+   12:21   0:00      \_ sudo su
+root        7420  0.0  0.0  20176  2424 ?        Ss   12:21   0:00          \_ sudo su
+root        7421  0.0  0.1  11484  5960 ?        S    12:21   0:00              \_ su
+root        7422  0.0  0.1  14060  6928 ?        S+   12:21   0:03                  \_ zsh
+root       13769  0.0  0.0   5600  2228 ?        S    12:32   0:00 dbus-launch --autolaunch=c41f3f8715d8425287072f4e934e25cb --binary-syntax --close-stderr
+root       13770  0.0  0.0   7260  2892 ?        Ss   12:32   0:00 /usr/bin/dbus-daemon --syslog-only --fork --print-pid 5 --print-address 7 --session
+debian     13914  0.0  0.0   5600  2224 ?        S    12:32   0:00 dbus-launch --autolaunch=c41f3f8715d8425287072f4e934e25cb --binary-syntax --close-stderr
+debian     13921  0.0  0.0   7296  2768 ?        Ss   12:32   0:00 /usr/bin/dbus-daemon --syslog-only --fork --print-pid 5 --print-address 7 --session
+debian     14685  0.0  0.3 477972 13300 ?        Sl   12:32   0:00 /usr/libexec/xdg-desktop-portal
+debian     14700  0.0  0.1 606844  6428 ?        Sl   12:32   0:00 /usr/libexec/xdg-document-portal
+root       14717  0.0  0.0   2576  1816 ?        Ss   12:32   0:00  \_ fusermount3 -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /home/kali/.cache/doc
+debian     14710  0.0  0.1 308292  6228 ?        Sl   12:32   0:00 /usr/libexec/xdg-permission-store
+debian     14728  0.0  0.4 406056 18492 ?        Sl   12:32   0:00 /usr/libexec/xdg-desktop-portal-gtk
+debian     14752  0.0  0.1 312344  7388 ?        Sl   12:32   0:00 /usr/libexec/gvfsd
+debian     14772  0.0  0.1 457532  6952 ?        Sl   12:32   0:00 /usr/libexec/gvfsd-fuse /home/kali/.gvfs -f
+root       18302  0.0  0.3 477964 13068 ?        Sl   12:39   0:00 /usr/libexec/xdg-desktop-portal
+root       18309  0.0  0.1 531048  6668 ?        Sl   12:39   0:00 /usr/libexec/xdg-document-portal
+root       18321  0.0  0.0   2576  1520 ?        Ss   12:39   0:00  \_ fusermount3 -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /root/.cache/doc
+root       18314  0.0  0.1 308292  6224 ?        Sl   12:39   0:00 /usr/libexec/xdg-permission-store
+root       18325  0.0  0.5 407192 20408 ?        Sl   12:39   0:03 /usr/libexec/xdg-desktop-portal-gtk
+root       18396  0.0  0.1 312344  7288 ?        Sl   12:39   0:00 /usr/libexec/gvfsd
+root       18402  0.0  0.1 457532  6920 ?        Sl   12:39   0:00 /usr/libexec/gvfsd-fuse /root/.gvfs -f
+root       18461  0.0  0.3 573372 13672 ?        Sl   12:39   0:00 /usr/libexec/gvfs-udisks2-volume-monitor
+root       18470  0.0  0.1 307660  6524 ?        Sl   12:39   0:00 /usr/libexec/gvfs-mtp-volume-monitor
+root       18476  0.0  0.1 308616  6780 ?        Sl   12:39   0:00 /usr/libexec/gvfs-gphoto2-volume-monitor
+root       18482  0.0  0.1 307576  6152 ?        Sl   12:39   0:00 /usr/libexec/gvfs-goa-volume-monitor
+root       18488  0.0  0.2 389008  8140 ?        Sl   12:39   0:00 /usr/libexec/gvfs-afc-volume-monitor</pre>
+</div>
+<div class="card">
+<h2>Network Analysis</h2>
+<pre>=== Network Configuration ===
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+    RX:  bytes packets errors dropped  missed   mcast           
+      55059390 1310786      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+      55059390 1310786      0       0       0       0 
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:f1:2e:22 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.16/24 brd 192.168.0.255 scope global dynamic noprefixroute eth0
+       valid_lft 77996sec preferred_lft 77996sec
+    inet6 fe80::8efa:1a1f:6ad:71bd/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+    RX:  bytes packets errors dropped  missed   mcast           
+      17286003   18309      0       2       0      54 
+    TX:  bytes packets errors dropped carrier collsns           
+       1056221    8652      0       0       0       0 
+default via 192.168.0.1 dev eth0 proto dhcp src 192.168.0.16 metric 100 
+192.168.0.0/24 dev eth0 proto kernel scope link src 192.168.0.16 metric 100 
+# Generated by NetworkManager
+search home
+nameserver 100.72.3.97
+nameserver 100.72.3.5
+nameserver 2800:810:100:3:200:115:192:89
+# NOTE: the libc resolver may not support more than 3 nameservers.
+# The nameservers listed below may not be recognized.
+nameserver 2800:810:100:2:190:55:60:130
+
+=== Network Services ===
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-03 19:35 UTC
+Nmap scan report for 192.168.0.16
+Host is up (0.0000080s latency).
+All 65535 scanned ports on 192.168.0.16 are in ignored states.
+Not shown: 65535 closed tcp ports (reset)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 14.82 seconds
+# Nmap 7.94SVN scan initiated Mon Feb  3 19:35:13 2025 as: /usr/lib/nmap/nmap -sV -p- -oN /home/kali/Forensix/evidence/network/nmap_scan.txt 192.168.0.16
+Nmap scan report for 192.168.0.16
+Host is up (0.0000080s latency).
+All 65535 scanned ports on 192.168.0.16 are in ignored states.
+Not shown: 65535 closed tcp ports (reset)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Feb  3 19:35:28 2025 -- 1 IP address (1 host up) scanned in 14.82 seconds
+
+=== Active Connections ===
+Recv-Q Send-Q Local Address:Port Peer Address:PortProcess
+COMMAND    PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+NetworkMa 1470 root   27u  IPv4   6349      0t0  UDP 192.168.0.16:bootpc->www.adsl.vf:bootps 
+
+=== Traffic Analysis ===</pre>
+</div>
+<div class="card">
+<h2>Vulnerabilities</h2>
+<table class="findings-table">
+<thead>
+<tr>
+<th>Service</th>
+<th>Version</th>
+<th>CVEs & Issues</th>
+</tr>
+</thead>
+<tbody>
+<tr><td colspan="3">jq command not found, unable to parse vulnerabilities</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card">
+<h2>Appendices</h2>
+<pre>=== Tools Used ===
+awk, grep, sed, df, lscpu, lshw, dmidecode, free, vmstat, lsblk, fdisk, uname, chroot, nmap, tcpdump, ss, lsof, find, searchsploit, metasploit
+</pre>
+</div>
+</div>
+<script>
+const ctx = document.getElementById('risk-chart');
+new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Critical', 'High', 'Medium', 'Low'],
+        datasets: [{
+            data: [4, 351, 1, 0],
+            backgroundColor: ['#ff0000', '#ff8000', '#ffbf00', '#00ff00']
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { position: 'bottom' } }
+    }
+});
+function downloadPDF() {
+    const element = document.body;
+    html2pdf().from(element).save('4Geeks-RECOVERY-Report.pdf');
+}
+</script>
+</body>
+</html>

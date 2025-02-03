@@ -1,0 +1,42 @@
+=== Timeline of the Attack ===
+First Proof of Intrusion:
+127.0.0.1 - - [30/Sep/2024:12:20:30 -0400] "POST /wp-admin/install.php?step=1 HTTP/1.1" 200 2648 "http://localhost/wp-admin/install.php" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+
+From Where Did the Attacker Enter:
+127.0.0.1
+
+What Did the Attacker Do:
+127.0.0.1 - - [30/Sep/2024:12:20:30 -0400] "POST /wp-admin/install.php?step=1 HTTP/1.1" 200 2648 "http://localhost/wp-admin/install.php" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [30/Sep/2024:12:22:50 -0400] "POST /wp-admin/install.php?step=2 HTTP/1.1" 200 2495 "http://localhost/wp-admin/install.php?step=1" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [30/Sep/2024:12:23:13 -0400] "POST /wp-cron.php?doing_wp_cron=1727713393.0228760242462158203125 HTTP/1.1" 200 259 "-" "WordPress/6.6.2; http://localhost"
+127.0.0.1 - - [30/Sep/2024:12:23:11 -0400] "POST /wp-admin/install.php?step=2 HTTP/1.1" 200 1541 "http://localhost/wp-admin/install.php?step=2" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [30/Sep/2024:12:23:32 -0400] "POST /wp-login.php HTTP/1.1" 302 1303 "http://localhost/wp-login.php" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [30/Sep/2024:12:23:45 -0400] "GET /wp-admin/js/postbox.min.js?ver=6.6.2 HTTP/1.1" 200 2565 "http://localhost/wp-admin/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [30/Sep/2024:12:23:46 -0400] "POST /wp-cron.php?doing_wp_cron=1727713426.4074020385742187500000 HTTP/1.1" 200 259 "-" "WordPress/6.6.2; http://localhost"
+127.0.0.1 - - [30/Sep/2024:12:23:46 -0400] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 1091 "http://localhost/wp-admin/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [30/Sep/2024:12:24:47 -0400] "POST /wp-cron.php?doing_wp_cron=1727713487.0431280136108398437500 HTTP/1.1" 200 259 "-" "WordPress/6.6.2; http://localhost"
+127.0.0.1 - - [30/Sep/2024:12:24:46 -0400] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 592 "http://localhost/wp-admin/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [30/Sep/2024:12:25:46 -0400] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 592 "http://localhost/wp-admin/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [30/Sep/2024:12:26:46 -0400] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 592 "http://localhost/wp-admin/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [30/Sep/2024:15:16:41 -0400] "POST /wp-cron.php?doing_wp_cron=1727723801.0123720169067382812500 HTTP/1.1" 200 259 "-" "WordPress/6.6.2; http://localhost"
+127.0.0.1 - - [08/Oct/2024:16:49:46 -0400] "POST /wp-cron.php HTTP/1.1" 200 259 "-" "WordPress/6.6.2; http://localhost"
+127.0.0.1 - - [08/Oct/2024:16:49:46 -0400] "POST /wp-cron.php?doing_wp_cron=1728420586.2589499950408935546875 HTTP/1.1" 200 259 "-" "WordPress/6.6.2; http://localhost"
+127.0.0.1 - - [08/Oct/2024:16:49:47 -0400] "GET /wp-admin/js/postbox.min.js?ver=6.6.2 HTTP/1.1" 200 2565 "http://localhost/wp-admin/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [08/Oct/2024:16:49:48 -0400] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 636 "http://localhost/wp-admin/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [08/Oct/2024:16:50:47 -0400] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 592 "http://localhost/wp-admin/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [08/Oct/2024:16:52:48 -0400] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 592 "http://localhost/wp-admin/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [08/Oct/2024:16:54:48 -0400] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 592 "http://localhost/wp-admin/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [08/Oct/2024:16:56:48 -0400] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 592 "http://localhost/wp-admin/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+127.0.0.1 - - [08/Oct/2024:16:58:48 -0400] "POST /wp-admin/admin-ajax.php HTTP/1.1" 200 592 "http://localhost/wp-admin/" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"
+
+Why Did the Attacker Do It:
+The attacker likely aimed to exploit vulnerabilities in the WordPress installation to gain unauthorized access and escalate privileges.
+
+Did the Attacker Escalate Privileges:
+No data found
+
+Which Vulnerability or Vulnerabilities Did the Attacker Use:
+The attacker exploited known vulnerabilities in WordPress and potentially other services such as vsftpd and OpenSSH.
+
+Type of Attack:
+The attack involved a combination of brute-force attempts, exploitation of known vulnerabilities, and privilege escalation.

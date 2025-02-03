@@ -1,0 +1,219 @@
+=== User Information ===
+User: root
+Services:
+root
+Passwords:
+$y$j9T$JS4rfiOarW0L6moIXGCts/$xALMgqqXQHqegxDj54EPWkfpTWJ0iCmimHpEmBUifDD
+
+User: daemon
+Services:
+daemon
+Passwords:
+*
+
+User: bin
+Services:
+bin
+Passwords:
+*
+
+User: sys
+Services:
+sys
+systemd-journal
+systemd-network
+systemd-timesync
+Passwords:
+*
+!*
+!*
+
+User: sync
+Services:
+Passwords:
+*
+
+User: games
+Services:
+games
+Passwords:
+*
+
+User: man
+Services:
+man
+Passwords:
+*
+
+User: lp
+Services:
+lp
+lpadmin
+Passwords:
+*
+
+User: mail
+Services:
+mail
+Passwords:
+*
+
+User: news
+Services:
+news
+Passwords:
+*
+
+User: uucp
+Services:
+uucp
+Passwords:
+*
+
+User: proxy
+Services:
+proxy
+Passwords:
+*
+
+User: www-data
+Services:
+www-data
+Passwords:
+*
+
+User: backup
+Services:
+backup
+Passwords:
+*
+
+User: list
+Services:
+list
+Passwords:
+*
+
+User: irc
+Services:
+irc
+Passwords:
+*
+
+User: _apt
+Services:
+Passwords:
+*
+
+User: nobody
+Services:
+Passwords:
+*
+
+User: systemd-network
+Services:
+systemd-network
+Passwords:
+!*
+
+User: systemd-timesync
+Services:
+systemd-timesync
+Passwords:
+!*
+
+User: messagebus
+Services:
+messagebus
+Passwords:
+!
+
+User: avahi-autoipd
+Services:
+avahi-autoipd
+Passwords:
+!
+
+User: usbmux
+Services:
+Passwords:
+!
+
+User: dnsmasq
+Services:
+Passwords:
+!
+
+User: avahi
+Services:
+avahi-autoipd
+avahi
+Passwords:
+!
+!
+
+User: speech-dispatcher
+Services:
+Passwords:
+!
+
+User: pulse
+Services:
+pulse
+pulse-access
+Passwords:
+!
+
+User: saned
+Services:
+saned
+Passwords:
+!
+
+User: lightdm
+Services:
+lightdm
+Passwords:
+!
+
+User: polkitd
+Services:
+polkitd
+Passwords:
+!*
+
+User: rtkit
+Services:
+rtkit
+Passwords:
+!
+
+User: colord
+Services:
+colord
+Passwords:
+!
+
+User: debian
+Services:
+debian
+Passwords:
+$y$j9T$LU2uhjMTdfBVsjmHytJLi/$bPwMjkL7fCuSPSRlINRqCKkqrnDjCYtbwBMyKWxbvb0
+
+User: mysql
+Services:
+mysql
+Passwords:
+!
+
+User: sshd
+Services:
+Passwords:
+!
+
+User: ftp
+Services:
+ftp
+Passwords:
+!
+
